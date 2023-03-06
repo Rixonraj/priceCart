@@ -1,5 +1,6 @@
 import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from './card';
 import Cart from './Cart';
 import React, { useEffect, useState } from "react";
