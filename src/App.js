@@ -1,5 +1,4 @@
 import './App.css';
-// import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from './card';
 import Cart from './Cart';
@@ -43,6 +42,7 @@ function App() {
   
 
   let addCart = (product)=>{
+    console.log(++product.quantity)
     setCartItems([...cartItems,product])
   }
 
@@ -51,7 +51,23 @@ function App() {
      cartItems.splice(indexVal,1);
      setCartItems([...cartItems]);
   }
-  
+  //quantity
+
+  let incNum =(product)=>{
+      let indexValue = cartItems.findIndex(obj => product.id === obj.id);
+      cartItems[indexValue].quantity = cartItems[indexValue].quantity+1;
+      setCartItems([...cartItems]);
+  };
+
+  let decNum =(product)=>{
+      let indexValue = cartItems.findIndex(obj => product.id === obj.id);
+      cartItems[indexValue].quantity = cartItems[indexValue].quantity-1;
+      if(cartItems[indexValue].quantity==0)cartItems.splice(indexValue,1);
+      setCartItems([...cartItems]);
+
+    
+  };
+  //end qty
   return (
     <div className='container'>
       <div className='row'>
@@ -64,7 +80,7 @@ function App() {
           </div>
         </div>
         <div className='col-lg-4'>
-        <Cart cartItems={cartItems} removeFromCart = {removeFromCart}/>
+        <Cart cartItems={cartItems} removeFromCart = {removeFromCart} incNum = {incNum} decNum={decNum}/>
         </div>
       </div>
 
